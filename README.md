@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Create React TodoApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React TodoApp](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -41,7 +41,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more in the [Create React TodoApp documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
@@ -53,7 +53,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/c
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### Making a Progressive Web TodoApp
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
@@ -68,3 +68,44 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+[//]: # (Help me build todo react application using webpack, and styled-components, without redux)
+[//]: # (Create shell script that generate todo react project)
+
+#!/bin/bash
+
+# Create react project
+npx create-react-app todo-react
+
+# Install styled-components
+`npm install styled-components
+`
+# Install antd
+`npm install antd
+`
+
+# Install the twin.macro package:
+`npm install twin.macro
+`
+
+# Install the babel-plugin-macros package:
+`npm install babel-plugin-macros
+`
+
+# Install tailwindcss packages:
+`npm install -D tailwindcss postcss autoprefixer
+`
+# Setup tailwindcss
+`npx tailwindcss init -p`
+
+# Install react-redux
+`npm install react-redux`
+
+# Install redux
+`npm install redux`
+
+# Install redux-thunk
+`npm install redux-thunk`
+
+# Install redux-devtools-extension
+`npm install redux-devtools-extension`
