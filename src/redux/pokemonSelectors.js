@@ -1,0 +1,1 @@
+export const getPokemonList = state => state.pokemon;

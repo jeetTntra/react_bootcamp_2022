@@ -1,14 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import PokemonApp from './containers/PokemonApp';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import store from "./redux/store";
+import Header from "./components/Header";
+import styled from "styled-components";
+import {Layout} from "antd";
+import SearchBar from "./components/SearchBar";
+
+const RootComponent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+`;
+
+const CustomLayout = styled(Layout)`
+  && {
+    flex-direction: column;
+  }
+`;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <RootComponent>
+        <React.StrictMode>
+            <Provider store={store}>
+                <Header/>
+                <CustomLayout>
+                    <SearchBar/>
+                    <PokemonApp/>
+                </CustomLayout>
+            </Provider>
+        </React.StrictMode>
+    </RootComponent>
 );
 
 // If you want to start measuring performance in your app, pass a function
