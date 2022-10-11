@@ -1,12 +1,18 @@
 import {
     GET_POKEMON_LIST,
     GET_POKEMON_LIST_SUCCESS,
-    GET_POKEMON_LIST_FAILURE
+    GET_POKEMON_LIST_FAILURE,
+    GET_POKEMON_DETAILS,
+    GET_POKEMON_DETAILS_SUCCESS,
+    GET_POKEMON_DETAILS_FAILURE,
+    GET_POKEMON_SPECIES, GET_POKEMON_SPECIES_SUCCESS, GET_POKEMON_SPECIES_FAILURE
 } from './pokemonTypes';
 
 const initialState = {
     loading: false,
     pokemonList: [],
+    pokemonDetails: [],
+    pokemonSpecies: [],
     error: ''
 };
 
@@ -37,6 +43,44 @@ const pokemonReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 pokemonList: [],
+                error: action.payload
+            }
+        case GET_POKEMON_DETAILS:
+            return {
+                ...state,
+                loading: true,
+            }
+        case GET_POKEMON_DETAILS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                pokemonDetails: action.payload,
+                error: ''
+            }
+        case GET_POKEMON_DETAILS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                pokemonDetails: [],
+                error: action.payload
+            }
+        case GET_POKEMON_SPECIES:
+            return {
+                ...state,
+                loading: true,
+            }
+        case GET_POKEMON_SPECIES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                pokemonSpecies: action.payload,
+                error: ''
+            }
+        case GET_POKEMON_SPECIES_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                pokemonSpecies: [],
                 error: action.payload
             }
         default:

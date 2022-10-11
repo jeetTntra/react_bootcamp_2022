@@ -15,22 +15,13 @@ const RootComponent = styled.div`
   margin: 0;
 `;
 
-const CustomLayout = styled(Layout)`
-  && {
-    flex-direction: column;
-  }
-`;
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <RootComponent>
         <React.StrictMode>
             <Provider store={store}>
                 <Header/>
-                <CustomLayout>
-                    <SearchBar/>
-                    <PokemonApp/>
-                </CustomLayout>
+                <PokemonApp/>
             </Provider>
         </React.StrictMode>
     </RootComponent>

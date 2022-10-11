@@ -6,19 +6,29 @@
 import React from 'react';
 import styled from "styled-components";
 import tw from "twin.macro";
+import {log} from "@craco/craco/lib/logger";
 
-const CardContainer = styled.div`
-  ${tw`
+const CardContainer = styled.div(({color}) => [
+    tw`
     flex
     flex-col
     items-center
     justify-center
-    bg-red-200
     rounded-xl
     p-2
     m-2
-  `}
-`;
+  `,
+    color === "red" && tw`bg-red-500`,
+    color === "blue" && tw`bg-blue-500`,
+    color === "yellow" && tw`bg-yellow-500`,
+    color === "green" && tw`bg-green-500`,
+    color === "black" && tw`bg-black`,
+    color === "purple" && tw`bg-purple-500`,
+    color === "gray" && tw`bg-gray-500`,
+    color === "white" && tw`bg-gray-500`,
+    color === "pink" && tw`bg-pink-500`,
+
+]);
 
 const CardImageHolder = styled.div`
   ${tw`
@@ -56,13 +66,21 @@ const PokemonCard = ({pokemon}) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    const setBgColor = (pokemon) => {
+        console.log(pokemon.color.name);
+    }
+
     return (
-        <CardContainer>
-            <CardImageHolder>
-                <CardImage src={pokemon.sprites.other.home.front_default} alt={pokemon.name} style={{width: "200px"}}/>
-            </CardImageHolder>
-            <CardTitle>{capitalize(pokemon.name)}</CardTitle>
-        </CardContainer>
+        <div>
+            {pokemon &&
+                <CardContainer color={pokemon.color.name}>
+                    <CardImageHolder>
+                        <CardImage src={pokemon.sprites.front_default} alt={pokemon.name} style={{width: "200px"}}/>
+                    </CardImageHolder>
+                    <CardTitle>{capitalize(pokemon.name)}</CardTitle>
+                </CardContainer>
+            }
+        </div>
     );
 };
 

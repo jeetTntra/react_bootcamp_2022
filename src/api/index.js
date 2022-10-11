@@ -1,9 +1,13 @@
 import api from "./api";
 
 export const fetchPokemonListFromAPI = () => {
-    return api.get("/pokemon?limit=9");
+    return api.get("/pokemon?limit=1000&offset=0");
 }
 
-export const fetchPokemonDetailsFromAPI = (pokemonName) => {
-    return api.get(`/pokemon/${pokemonName}`);
+export const fetchPokemonDetailsFromAPI = (url) => {
+    return api.get(url);
+}
+
+export const fetchPokemonSpeciesFromAPI = (url) => {
+    return api.get(url);
 }
