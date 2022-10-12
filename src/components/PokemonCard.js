@@ -1,12 +1,7 @@
-// Create a PokemonCard component that renders a pokemon's name, image and type. The component should be a functional component that takes in a pokemon object as a prop. The component should render the pokemon's name, image and type. The component should be exported as default.
-
-// Language: javascript
-// Path: src/components/PokemonCard.js
-// Compare this snippet from src/components/PokemonCard.js:
 import React from 'react';
 import styled from "styled-components";
 import tw from "twin.macro";
-import {log} from "@craco/craco/lib/logger";
+import {useNavigate} from "react-router-dom";
 
 const CardContainer = styled.div(({color}) => [
     tw`
@@ -38,7 +33,7 @@ const CardImageHolder = styled.div`
         flex
         justify-center
         items-center
-        bg-gradient-to-t from-black to-transparent
+        bg-gradient-to-t from-gray-900 to-transparent
         rounded-md
         w-full
         h-full
@@ -89,15 +84,20 @@ const CardTitle = styled.h3(({color}) => [
 
 const PokemonCard = ({pokemon}) => {
 
+    const navigate = useNavigate();
+
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    const goToPokemonDetails = () => {
+        navigate(`/pokemon/${pokemon.id}`, {state: pokemon});
     }
 
     return (
         <div>
             {
                 pokemon &&
-                <CardContainer color={pokemon.color.name} onClick={() => alert(capitalize(pokemon.name))}>
+                <CardContainer color={pokemon.color.name} onClick={goToPokemonDetails}>
                     <CardImageHolder>
                         <HealthPoint>HP: {pokemon.stats[0].base_stat}</HealthPoint>
                         <CardImage src={`https://www.smogon.com/dex/media/sprites/xy/${pokemon.name}.gif`} alt={pokemon.name}/>

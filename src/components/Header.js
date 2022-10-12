@@ -10,7 +10,11 @@ const StyledHeader = styled(Layout.Header)`
       align-items: center;
       background-color: orangered;
       gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
+
     display: flex;
   }
 `

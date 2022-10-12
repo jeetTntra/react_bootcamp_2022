@@ -90,14 +90,14 @@ const PokemonListContainer = ({
         }
 
         const pokemonData = pokemonDetails.length > 0 && pokemonSpecies.length > 0 ? pokemonDetails.map((pokemon, index) => {
-            return {
-                ...pokemon, ...pokemonSpecies[index]
-            }
-        }).filter((pokemon, index, self) => {
-            return index === self.findIndex((p) => (p.id === pokemon.id))
-        }).filter((pokemon) => {
-            return pokemon.name.toLowerCase().includes(search.toLowerCase());
-        }) : [];
+                return {
+                    ...pokemon, ...pokemonSpecies[index]
+                }
+            }).filter((pokemon, index, self) => {
+                return index === self.findIndex((p) => (p.id === pokemon.id))
+            }).filter((pokemon) => {
+                return pokemon.name.toLowerCase().includes(search.toLowerCase());
+            }) : [];
 
         return (
             <CustomLayout>
@@ -105,7 +105,13 @@ const PokemonListContainer = ({
                 <CustomBackground>
                     {pokemonState.loading && <h2>Loading...</h2>}
                     {pokemonState.error && <h2>{pokemonList.error}</h2>}
-                    <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '1px', justifyContent: 'center'}}>
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        flexDirection: 'row',
+                        gap: '1px',
+                        justifyContent: 'center'
+                    }}>
                         {pokemonData.length > 0 && pokemonData.map((pokemon, index) => <PokemonCard key={pokemon.id}
                                                                                                     pokemon={pokemon}/>)}
                     </div>

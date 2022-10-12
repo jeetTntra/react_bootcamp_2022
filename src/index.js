@@ -4,9 +4,10 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import store from "./redux/store";
 import styled from "styled-components";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./containers/Home";
+import {Layout} from "antd";
+import routeConfig from "./utils/routeConfig";
 
 const RootComponent = styled.div`
   display: flex;
@@ -19,10 +20,15 @@ root.render(
     <RootComponent>
         <React.StrictMode>
             <Provider store={store}>
-                <BrowserRouter>
-                    <Header/>
-                    <Home/>
-                </BrowserRouter>
+                <Header/>
+                <Layout.Content>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path={routeConfig[0].path} element={routeConfig[0].component}/>
+                            <Route path={routeConfig[1].path} element={routeConfig[1].component}/>
+                        </Routes>
+                    </BrowserRouter>
+                </Layout.Content>
             </Provider>
         </React.StrictMode>
     </RootComponent>
