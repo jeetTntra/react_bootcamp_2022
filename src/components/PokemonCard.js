@@ -17,47 +17,74 @@ const CardContainer = styled.div(({color}) => [
     rounded-xl
     p-2
     m-2
+    w-52
+    cursor-pointer
   `,
-    color === "red" && tw`bg-red-500`,
-    color === "blue" && tw`bg-blue-500`,
-    color === "yellow" && tw`bg-yellow-500`,
-    color === "green" && tw`bg-green-500`,
-    color === "black" && tw`bg-black`,
-    color === "purple" && tw`bg-purple-500`,
-    color === "gray" && tw`bg-gray-500`,
-    color === "white" && tw`bg-gray-500`,
-    color === "pink" && tw`bg-pink-500`,
-
+    color === "red" && tw`bg-gradient-to-tr from-red-300 to-red-700`,
+    color === "blue" && tw`bg-gradient-to-tr from-blue-300 to-blue-700`,
+    color === "yellow" && tw`bg-gradient-to-tr from-yellow-300 to-yellow-700`,
+    color === "green" && tw`bg-gradient-to-tr from-green-300 to-green-700`,
+    color === "black" && tw`bg-gradient-to-tr from-gray-300 to-gray-700`,
+    color === "brown" && tw`bg-gradient-to-tr from-yellow-600 to-yellow-800`,
+    color === "purple" && tw`bg-gradient-to-tr from-purple-300 to-purple-700`,
+    color === "gray" && tw`bg-gradient-to-bl from-gray-100 to-gray-500`,
+    color === "white" && tw`bg-gradient-to-br from-gray-300 to-gray-700`,
+    color === "pink" && tw`bg-gradient-to-tr from-pink-300 to-pink-700`,
 ]);
 
 const CardImageHolder = styled.div`
   ${tw`
+        relative
         flex
         justify-center
         items-center
-        bg-white
+        bg-gradient-to-t from-black to-transparent
         rounded-md
         w-full
         h-full
     `}
 `;
 
-const CardImage = styled.img`
+// styled div for health point on top right corner inside the card image holder
+const HealthPoint = styled.div`
   ${tw`
-          w-full
-          h-full
-          object-contain    
-  `}
-`;
-
-const CardTitle = styled.h2`
-  ${tw`
-        text-xl
+        absolute
+        top-0
+        right-0
+        bg-yellow-500
+        rounded-md
+        text-white
         font-bold
-        text-gray-700
+        text-xs
         font-sans
+        p-1
+        m-1.5
     `}
 `;
+
+const CardImage = styled.img`
+  ${tw`
+          w-48
+          h-48
+          object-scale-down
+  `}
+
+  transition: transform 0.2s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.5); 
+  }
+`;
+
+const CardTitle = styled.h3(({color}) => [
+    tw`
+        font-bold
+        text-black
+        font-sans
+    `,
+    color === "red" | color === "brown" | color === "gray" | color === "black" | color === "purple" | color === "white" && tw`text-white`,
+    color === "green" | color === "pink" | color === "yellow" && tw`text-black`,
+]);
 
 
 const PokemonCard = ({pokemon}) => {
@@ -66,18 +93,16 @@ const PokemonCard = ({pokemon}) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    const setBgColor = (pokemon) => {
-        console.log(pokemon.color.name);
-    }
-
     return (
         <div>
-            {pokemon &&
-                <CardContainer color={pokemon.color.name}>
+            {
+                pokemon &&
+                <CardContainer color={pokemon.color.name} onClick={() => alert(capitalize(pokemon.name))}>
                     <CardImageHolder>
-                        <CardImage src={pokemon.sprites.front_default} alt={pokemon.name} style={{width: "200px"}}/>
+                        <HealthPoint>HP: {pokemon.stats[0].base_stat}</HealthPoint>
+                        <CardImage src={`https://www.smogon.com/dex/media/sprites/xy/${pokemon.name}.gif`} alt={pokemon.name}/>
                     </CardImageHolder>
-                    <CardTitle>{capitalize(pokemon.name)}</CardTitle>
+                    <CardTitle color={pokemon.color.name}>{capitalize(pokemon.name)}</CardTitle>
                 </CardContainer>
             }
         </div>

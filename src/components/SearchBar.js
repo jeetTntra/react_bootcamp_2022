@@ -9,6 +9,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+    padding: 10px;
+    gap: 10px;
     background-color: #fff;
   }
 `;
@@ -18,7 +20,6 @@ const CustomSearchBar = styled(Input)`
     ${tw`
             w-full
             h-auto
-            m-2
             rounded-xl
             border-2
             border-gray-300
@@ -44,14 +45,13 @@ const ButtonBox = styled.div`
 const CustomButton = styled(Button)`
   && {
     ${tw`
+            h-12
             bg-gray-300
-            hover:bg-gray-400
             text-gray-700
             font-bold
             font-sans
             text-lg
-            rounded-xl
-            border-2
+            rounded-md
             border-gray-300
     `}
   }

@@ -18,7 +18,7 @@ import styled from "styled-components";
 import SearchBar from "../components/SearchBar";
 import {Layout} from "antd";
 
-const CustomBackgroud = styled.div`
+const CustomBackground = styled.div`
   && {
     min-height: 100vh;
     background-color: #ffffff;
@@ -102,14 +102,14 @@ const PokemonListContainer = ({
         return (
             <CustomLayout>
                 <SearchBar handleSearch={handleSearch} handleReset={handleReset}/>
-                <CustomBackgroud>
+                <CustomBackground>
                     {pokemonState.loading && <h2>Loading...</h2>}
                     {pokemonState.error && <h2>{pokemonList.error}</h2>}
-                    <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row'}}>
+                    <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '1px', justifyContent: 'center'}}>
                         {pokemonData.length > 0 && pokemonData.map((pokemon, index) => <PokemonCard key={pokemon.id}
                                                                                                     pokemon={pokemon}/>)}
                     </div>
-                </CustomBackgroud>
+                </CustomBackground>
             </CustomLayout>
         );
     }

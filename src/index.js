@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import PokemonApp from './containers/PokemonApp';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import store from "./redux/store";
-import Header from "./components/Header";
 import styled from "styled-components";
-import {Layout} from "antd";
-import SearchBar from "./components/SearchBar";
+import {BrowserRouter} from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./containers/Home";
 
 const RootComponent = styled.div`
   display: flex;
@@ -20,8 +19,10 @@ root.render(
     <RootComponent>
         <React.StrictMode>
             <Provider store={store}>
-                <Header/>
-                <PokemonApp/>
+                <BrowserRouter>
+                    <Header/>
+                    <Home/>
+                </BrowserRouter>
             </Provider>
         </React.StrictMode>
     </RootComponent>
