@@ -5,11 +5,12 @@ import {
     GET_POKEMON_DETAILS,
     GET_POKEMON_DETAILS_SUCCESS,
     GET_POKEMON_DETAILS_FAILURE,
-    GET_POKEMON_SPECIES, GET_POKEMON_SPECIES_SUCCESS, GET_POKEMON_SPECIES_FAILURE
+    GET_POKEMON_SPECIES, GET_POKEMON_SPECIES_SUCCESS, GET_POKEMON_SPECIES_FAILURE, MERGE_POKEMON_DETAILS
 } from './pokemonTypes';
 
 const initialState = {
     loading: false,
+    pokemonInfo: [],
     pokemonList: [],
     pokemonDetails: [],
     pokemonSpecies: [],

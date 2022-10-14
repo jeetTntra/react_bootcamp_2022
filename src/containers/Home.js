@@ -12,6 +12,7 @@ import {
     fetchPokemonSpecies,
     fetchPokemonSpeciesFailure,
     fetchPokemonSpeciesSuccess,
+    mergePokemonDetails,
 } from "../redux/pokemonActions";
 import PokemonCard from "../components/PokemonCard";
 import styled from "styled-components";
@@ -44,7 +45,8 @@ const PokemonListContainer = ({
                                   fetchPokemonDetailsFailure,
                                   fetchPokemonSpecies,
                                   fetchPokemonSpeciesSuccess,
-                                  fetchPokemonSpeciesFailure
+                                  fetchPokemonSpeciesFailure,
+                                  mergePokemonDetails
                               }) => {
 
         const [search, setSearch] = React.useState("");
@@ -90,32 +92,32 @@ const PokemonListContainer = ({
         }
 
         const pokemonData = pokemonDetails.length > 0 && pokemonSpecies.length > 0 ? pokemonDetails.map((pokemon, index) => {
-                return {
-                    ...pokemon, ...pokemonSpecies[index]
-                }
-            }).filter((pokemon, index, self) => {
-                return index === self.findIndex((p) => (p.id === pokemon.id))
-            }).filter((pokemon) => {
-                return pokemon.name.toLowerCase().includes(search.toLowerCase());
-            }) : [];
+            return {
+                ...pokemon,
+                ...pokemonSpecies[index]
+            };
+        }).filter((pokemon, index, self) => {
+            return index === self.findIndex((p) => (p.id === pokemon.id))
+        }).filter((pokemon) => {
+            return pokemon.name.toLowerCase().includes(search.toLowerCase());
+        }) : [];
 
         return (
             <CustomLayout>
-                <SearchBar handleSearch={handleSearch} handleReset={handleReset}/>
-                <CustomBackground>
-                    {pokemonState.loading && <h2>Loading...</h2>}
-                    {pokemonState.error && <h2>{pokemonList.error}</h2>}
-                    <div style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        flexDirection: 'row',
-                        gap: '1px',
-                        justifyContent: 'center'
-                    }}>
-                        {pokemonData.length > 0 && pokemonData.map((pokemon, index) => <PokemonCard key={pokemon.id}
-                                                                                                    pokemon={pokemon}/>)}
-                    </div>
-                </CustomBackground>
+                <SearchBar handleSearch={handleSearch} handleReset={handleReset} value={search}/>
+                    <CustomBackground>
+                        {pokemonState.error && <h2>{pokemonList.error}</h2>}
+                        <div style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            flexDirection: 'row',
+                            gap: '1px',
+                            justifyContent: 'center'
+                        }}>
+                            {pokemonData.length > 0 && pokemonData.map((pokemon, index) => <PokemonCard key={pokemon.id}
+                                                                                                        pokemon={pokemon}/>)}
+                        </div>
+                    </CustomBackground>
             </CustomLayout>
         );
     }

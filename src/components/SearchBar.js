@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Button, Input} from "antd";
 import styled from "styled-components";
 import tw from "twin.macro";
-import PropTypes from   "prop-types";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
   && {
@@ -17,23 +17,20 @@ const Container = styled.div`
 
 const CustomSearchBar = styled(Input)`
   && {
-    ${tw`
-            w-full
-            h-auto
-            rounded-xl
-            border-2
-            border-gray-300
-            focus:border-gray-500
-            focus:outline-none
-            focus:ring-2
-            focus:ring-gray-500
-            focus:ring-opacity-50
-            p-2
-            text-lg
-            font-sans
-            font-bold
-            text-gray-700
-        `}
+    border-radius: 2rem;
+    border: 0;
+    background: #f0f0f0;
+    padding: 1rem;
+    width: 100%;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+
+    .ant-input {
+      padding-left: 0.5rem;
+      background: gray;
+    }
   }
 `;
 
@@ -44,28 +41,35 @@ const ButtonBox = styled.div`
 
 const CustomButton = styled(Button)`
   && {
-    ${tw`
-            h-12
-            bg-gray-300
-            text-gray-700
-            font-bold
-            font-sans
-            text-lg
-            rounded-md
-            border-gray-300
-    `}
+    border-radius: 2rem;
+    border: 0;
+    background: firebrick;
+    padding: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+
+    transition : all 0.1s ease-in-out;
+    
+    &:hover {
+      background: darkred;
+      cursor: pointer;
+      transform: scale(0.9);
+      transition: 0.1s ease-in-out;
+    }
   }
 `;
 
 
-const SearchBar = ({handleSearch, handleReset}) => {
+const SearchBar = ({handleSearch, handleReset, value}) => {
     return (
         <Container>
             <CustomSearchBar
                 data-testid="search-bar"
                 type="text"
                 placeholder={"Search for a pokemon"}
-                defaultValue={""}
+                value={value}
                 onChange={handleSearch}
                 autoFocus
             />
@@ -80,6 +84,7 @@ const SearchBar = ({handleSearch, handleReset}) => {
 SearchBar.propTypes = {
     handleSearch: PropTypes.func.isRequired,
     handleReset: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
 };
 
 export default SearchBar;

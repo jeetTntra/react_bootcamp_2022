@@ -1,10 +1,13 @@
 import React from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import styled from "styled-components";
 import {Layout} from "antd";
 import PokemonDetailsCard from "../components/PokemonDetailsCard";
-import {getPokemonDetails, getPokemonList, getPokemonSpecies, getPokemonState} from "../redux/pokemonSelectors";
+import {
+    getPokemonDetails,
+    getPokemonSpecies,
+} from "../redux/pokemonSelectors";
 
 const CustomBackground = styled.div`
   && {
@@ -19,8 +22,18 @@ const CustomLayout = styled(Layout)`
   }
 `;
 
-const  PokemonDetails = () => {
-    const pokemon = useLocation().state;
+const  PokemonDetails = ({pokemonSpecies, pokemonDetails}) => {
+    const params = useParams();
+    const pokemonId = params.id;
+
+    const pokemon = pokemonDetails.length > 0 && pokemonSpecies.length > 0 ? pokemonDetails.map((pokemon, index) => {
+        return {
+            ...pokemon,
+            ...pokemonSpecies[index]
+        };
+    }).filter(pokemon => pokemon.id === parseInt(pokemonId))[0] : null;
+
+    console.log(pokemon);
 
     return (
         <CustomBackground>
@@ -31,4 +44,11 @@ const  PokemonDetails = () => {
     );
 }
 
-export default PokemonDetails;
+const mapStateToProps = (state) => {
+    return {
+        pokemonSpecies: getPokemonSpecies(state),
+        pokemonDetails: getPokemonDetails(state)
+    }
+}
+
+export default connect(mapStateToProps)(PokemonDetails);

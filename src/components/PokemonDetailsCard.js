@@ -32,7 +32,7 @@ const CardImageHolder = styled.div`
         flex
         justify-center
         items-center
-        bg-gradient-to-t from-gray-900 to-transparent
+        bg-gradient-to-t from-black to-transparent
         rounded-md
         w-full
         h-full
@@ -140,24 +140,17 @@ const PokemonStatsBlockContainer = styled.div([
 
 const PokemonStatsBlock = styled.div(({color}) => [
     tw`
-        flex
-        flex-col
-        items-center
-        justify-center
-        w-0.5
-        h-3
-        p-2
-        m-0.5
-        relative
-    `,
-    // background glow effect
+        w-2
+        h-2
+        rounded-md
+        bg-black
+        `,
     color === "red" && tw`bg-yellow-300`,
-    color === "gray" && tw`bg-gray-300`,
+    color === "gray" && tw`bg-gray-200`,
 ]);
 
 const PokemonStatsBar = ({stat}) => {
     const blocks = [];
-    console.log(stat);
     for (let i = 0; i < 10; i++) {
         if (i < stat / 10) {
             blocks.push(<PokemonStatsBlock key={i} color="red"/>);
@@ -193,13 +186,6 @@ const PokemonDetailsCard = ({pokemon}) => {
                     <CardTitle color={pokemon.color.name}>{capitalize(pokemon.name)}</CardTitle>
                     <PokemonStatsContainer>
                         <table>
-                            <thead>
-                            <tr>
-                                <th>Stats</th>
-                                <th>Value</th>
-                                <th>Stats Bar</th>
-                            </tr>
-                            </thead>
                             <tbody>
                             {
                                 pokemon.stats.map((stat, index) => (

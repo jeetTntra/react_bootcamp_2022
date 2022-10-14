@@ -12,6 +12,11 @@ const routes = [
         path: '/pokemon/:id',
         exact: true,
         component: <PokemonDetails/>,
+    },
+    {
+        path: '/play',
+        exact: true,
+        component: lazy(() => import('../containers/PokemonBattle')),
     }
 ];
 

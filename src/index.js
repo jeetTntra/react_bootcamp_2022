@@ -20,13 +20,19 @@ root.render(
     <RootComponent>
         <React.StrictMode>
             <Provider store={store}>
-                <Header/>
                 <Layout.Content>
                     <BrowserRouter>
-                        <Routes>
-                            <Route path={routeConfig[0].path} element={routeConfig[0].component}/>
-                            <Route path={routeConfig[1].path} element={routeConfig[1].component}/>
-                        </Routes>
+                        <Header/>
+                        <React.Suspense fallback={<div>Loading...</div>}>
+                            <Routes>
+                                {routeConfig.map((route, index) => {
+                                        return (
+                                            <Route key={index} path={route.path} element={route.component}/>
+                                        )
+                                    }
+                                )}
+                            </Routes>
+                        </React.Suspense>
                     </BrowserRouter>
                 </Layout.Content>
             </Provider>

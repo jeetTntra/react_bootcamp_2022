@@ -33,7 +33,7 @@ const CardImageHolder = styled.div`
         flex
         justify-center
         items-center
-        bg-gradient-to-t from-gray-900 to-transparent
+        bg-gradient-to-t from-black to-transparent
         rounded-md
         w-full
         h-full
@@ -90,7 +90,7 @@ const PokemonCard = ({pokemon}) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
     const goToPokemonDetails = () => {
-        navigate(`/pokemon/${pokemon.id}`, {state: pokemon});
+        navigate(`/pokemon/${pokemon.id}`);
     }
 
     return (
